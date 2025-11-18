@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.MediaView?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/17.0.2-ea" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.zszq.javafxstudy.VideoPlayerController">
+    
+    <top>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="视频源:"/>
+                <ComboBox fx:id="videoSourceComboBox" prefWidth="150"/>
+                <TextField fx:id="urlTextField" promptText="输入视频URL或选择文件" 
+                          HBox.hgrow="ALWAYS"/>
+                <Button text="选择文件" onAction="#handleFileSelect"/>
+                <Button text="加载" onAction="#handleLoadVideo"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <StackPane>
+            <MediaView fx:id="mediaView" fitWidth="1200" fitHeight="600" 
+                      preserveRatio="true"/>
+        </StackPane>
+    </center>
+    
+    <bottom>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <HBox spacing="10" alignment="CENTER">
+                <Button fx:id="playButton" text="播放" onAction="#handlePlayPause"/>
+                <Button text="停止" onAction="#handleStop"/>
+                <Label text="音量:"/>
+                <Slider fx:id="volumeSlider" prefWidth="80" value="50" onDragDetected="#handleVolumeChange"/>
+            </HBox>
+            
+            <HBox spacing="10" alignment="CENTER">
+                <Label fx:id="currentTimeLabel" text="00:00"/>
+                <Slider fx:id="progressSlider" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="totalTimeLabel" text="00:00"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
